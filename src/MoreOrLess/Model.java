@@ -5,18 +5,56 @@ package MoreOrLess;
  * Created by MashaJM on 08.04.2016.
  */
 public class Model {
-    private int min, max;
 
-    public int rand (int min, int max) {
+    private int minBound, maxBound;
+    private int hiddenNumber;
 
-        return (min + (int)(Math.random() * ((max - min) + 1)));
+
+
+    public Model() {
+        this.minBound = Controller.RAND_MIN;
+        this.maxBound = Controller.RAND_MAX;
+        this.hiddenNumber = rand();
 
 
     }
+//int i, int i1, int rand
+    public Model(int minBound, int maxBound) {
+        this.minBound = minBound;
+        this.maxBound = maxBound;
+        this.hiddenNumber = rand(this.minBound, this.maxBound);
+    }
+
+    /**
+     *
+     * @return a randomize integer number between that is more than RAND_MIN and less than RAND_MAX
+     */
 
     public int rand () {
 
-        return (0 + (int)(Math.random() * ((RAND_MAX - 0) + 1)));
+        return Controller.RAND_MIN + 1  + (int) (Math.random() * (Controller.RAND_MAX - Controller.RAND_MIN - 1));
+
+
+    }
+
+
+    public static int rand (int minBound, int maxBound) {
+        return (minBound+1) + (int) (Math.random() * (maxBound - minBound - 1));
+    }
+
+
+
+
+    public boolean guessNumber (int tryingNumber) {
+
+        if (hiddenNumber == tryingNumber) return true;
+        else if (hiddenNumber > tryingNumber){
+            minBound = tryingNumber;
+
+        } else {
+            maxBound = tryingNumber;
+        }
+        return false;
 
 
     }
@@ -24,19 +62,47 @@ public class Model {
 
 
 
-    public int getMin() {
-        return min;
+
+
+    public int getMinBound() {
+        return minBound;
     }
 
-    public void setMin(int min) {
-        this.min = min;
+
+
+    public int getHiddenNumber(int minBound, int maxBound) {
+        return hiddenNumber;
     }
 
-    public int getMax() {
-        return max;
+    public void setHiddenNumber() {
+
+        hiddenNumber = rand();
     }
 
-    public void setMax(int max) {
-        this.max = max;
+    public void setHiddenNumber(int minBound, int maxBound) {
+
+        hiddenNumber = rand(minBound, maxBound);
+    }
+    public int getHiddenNumber() {
+        return hiddenNumber;
+    }
+   /* public int getTryingNumber() {
+        return tryingNumber;
+    }
+
+    public void setTryingNumber(int tryingNumber) {
+        this.tryingNumber = tryingNumber;
+    }
+*/
+    public void setMinBound (int minBound) {
+        this.minBound = minBound;
+    }
+
+    public int getMaxBound() {
+        return maxBound;
+    }
+
+    public void setMaxBound(int maxBound) {
+        this.maxBound = maxBound;
     }
 }
