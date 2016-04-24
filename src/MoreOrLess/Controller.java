@@ -95,6 +95,7 @@ public class Controller {
         model.setMinBound(array[0]);
         model.setMaxBound(array[1]);
 
+
         return array;
     }
 
