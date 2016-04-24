@@ -19,6 +19,13 @@ public class Controller {
         this.view = view;
     }
 
+
+    /**
+     * check, if the User wants to solve the problem on default interval (0..100) or wants the new one
+     * @param scanner
+     * @return
+     */
+
     public Boolean isNewInterval(Scanner scanner) {
         view.printMessage(view.GREETINGS);
 
@@ -53,7 +60,10 @@ public class Controller {
         }
     }
 
-
+    /**
+     * set the interval's borders if it isn't default
+     * @return
+     */
     public int[] setIntervals() {
 
         int array[] = new int[2];
@@ -88,35 +98,45 @@ public class Controller {
         return array;
     }
 
-
+    /**
+     * checks, if the User's number myNumber is inside interval (between min and max)
+     * @param min
+     * @param max
+     * @param myNumber
+     * @return
+     */
     public boolean isInsideBorders(int min, int max, int myNumber) {
-        if ((min < myNumber) & (myNumber < max)) return true;
+        if ((min < myNumber) && (myNumber < max)) return true;
         else return false;
 
     }
 
 
+    /**
+     * return user's input while it is integer number
+     * @param scanner
+     * @return
+     */
+
+    public int inputInt (Scanner scanner) {
+        view.printMessage(view.INPUT_INT_DATA);
+        while(! scanner.hasNextInt()) {
+            view.printMessage(view.WRONG_INPUT_INT_DATA + view.INPUT_INT_DATA);
+            scanner.next();
+        } return scanner.nextInt();}
 
 
+    /**
+     * returns integer number inside the interval of our model
+     * @param scanner
+     * @return
+     */
+    public int desireInt (Scanner scanner) {
+        while (!isInsideBorders(model.getMinBound(), model.getMaxBound(), inputInt(scanner))) {
+            scanner.next();
+            view.printMessage(view.OUT_OF_RANGE);
 
-
-
-
-public int inputInt (Scanner scanner) {
-    view.printMessage(view.INPUT_INT_DATA);
-    while(! scanner.hasNextInt()) {
-        view.printMessage(view.WRONG_INPUT_INT_DATA + view.INPUT_INT_DATA);
-        scanner.next();
-} return scanner.nextInt();}
-
-
-
-public int desireInt (Scanner scanner) {
-    while (!isInsideBorders(model.getMinBound(), model.getMaxBound(), inputInt(scanner))) {
-    scanner.next();
-        view.printMessage(view.OUT_OF_RANGE);
-
-    }return scanner.nextInt();
+        }return scanner.nextInt();
     }
 
 
@@ -128,38 +148,30 @@ public int desireInt (Scanner scanner) {
 
 
 
-            //return false;
+    //return false;
 
 
 
  /*   public Model chooseModel()
-
-
     {
         Scanner sc = new Scanner(System.in);
-
         if (isNewInterval(sc)) {
-
-
             this.setIntervals();
             model = new Model(setIntervals()[0], setIntervals()[1]);
             System.out.println("my intervals are: [" + setIntervals()[0] + ".." + setIntervals()[1] + "]");
             return model;
-
-
         } else model = new Model();
-
-
         return model;
-
-
     }
     */
 
-
+    /**
+     * the main game
+     * @param model
+     */
     public void game(Model model) {
 
-
+//sout for checking only
         System.out.println("minBound = " + model.getMinBound());
         System.out.println("maxBound = " + model.getMaxBound());
         System.out.println("Hidden Number = " + model.getHiddenNumber());
@@ -179,18 +191,16 @@ public int desireInt (Scanner scanner) {
 
 
 
-            }
-        }
+    }
+}
 
 
 
 
-    /**
-     *
-     * @param sc
-     * @return
-     */
-
-
+/**
+ *
+ * @param sc
+ * @return
+ */
 
 

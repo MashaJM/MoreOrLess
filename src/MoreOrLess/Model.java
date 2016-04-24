@@ -86,14 +86,7 @@ public class Model {
     public int getHiddenNumber() {
         return hiddenNumber;
     }
-   /* public int getTryingNumber() {
-        return tryingNumber;
-    }
 
-    public void setTryingNumber(int tryingNumber) {
-        this.tryingNumber = tryingNumber;
-    }
-*/
     public void setMinBound (int minBound) {
         this.minBound = minBound;
     }
