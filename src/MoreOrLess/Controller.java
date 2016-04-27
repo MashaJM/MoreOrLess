@@ -22,13 +22,15 @@ public class Controller {
 
     /**
      * check, if the User wants to solve the problem on default interval (0..100) or wants the new one
-     * @param scanner
+     * @param
      * @return
      */
 
-    public Boolean isNewInterval(Scanner scanner) {
-        view.printMessage(view.GREETINGS);
-
+    public static Boolean isNewInterval() {
+        System.out.println("Hello dear User. Let's try to guess one integer we will hide from you. " +
+                "\n Do you want to choose the interval?\n " +
+                "Or we can just play to default game on interval (0..100). \n Press Y for choose interval, Press N for having default game");
+        Scanner scanner = new Scanner(System.in);
         while (true) {
 
             String yesOrNo = scanner.next();
@@ -51,7 +53,7 @@ public class Controller {
             {
 
 
-                view.printMessage(view.WRONG_INPUT_INT_DATA);
+                System.out.println("Wrong input! Repeat please!");
                 System.out.println(yesOrNo);
 
 
@@ -64,23 +66,24 @@ public class Controller {
      * set the interval's borders if it isn't default
      * @return
      */
-    public int[] setIntervals() {
+    public static int[] setIntervals() {
 
         int array[] = new int[2];
         Scanner sc = new Scanner(System.in);
 
         while (!sc.hasNextInt()) {
-            view.printMessage(view.SET_MIN_BORDER);
+            System.out.println("Set the minimal border");
             sc.nextInt();
-            view.printMessage(view.WRONG_INPUT_INT_DATA);
+            System.out.println("wrong input data, try again");
+
         }
         array[0] = sc.nextInt();
 
 
         while (!sc.hasNextInt()) {
-            view.printMessage(view.SET_MAX_BORDER);
+            System.out.println("Set the maximal border");
             sc.nextInt();
-            view.printMessage(view.WRONG_INPUT_INT_DATA);
+            System.out.println("wrong input data, try again");
         }
         array[1] = sc.nextInt();
 
@@ -92,8 +95,8 @@ public class Controller {
 
 
         }
-        model.setMinBound(array[0]);
-        model.setMaxBound(array[1]);
+       // model.setMinBound(array[0]);
+       // model.setMaxBound(array[1]);
 
 
         return array;
@@ -106,15 +109,47 @@ public class Controller {
      * @param myNumber
      * @return
      */
-    public boolean isInsideBorders(int min, int max, int myNumber) {
+    public boolean isInsideBorders2(int min, int max, int myNumber) {
         if ((min < myNumber) && (myNumber < max)) return true;
         else return false;
 
     }
 
 
+    public boolean isInsideBorders(int min, int max, int myNumber) {
+        return ((min < myNumber) && (myNumber < max));
+
+
+    }
+
+
     /**
-     * return user's input while it is integer number
+     * returns integer number inside the interval of our model
+     * @param input
+     * @return
+     */
+
+
+
+    public int desireInt (int input) {
+
+             {
+                Scanner scanner = new Scanner(System.in);
+                 while (!isInsideBorders(model.getMinBound(), model.getMaxBound(), input)) {
+                     view.printMessage(view.OUT_OF_RANGE);
+
+                     input = inputInt(scanner);
+
+
+                }return input;
+            }
+
+
+        }
+
+
+    /**
+     * returns user's input while it is integer number
      * @param scanner
      * @return
      */
@@ -127,29 +162,7 @@ public class Controller {
         } return scanner.nextInt();}
 
 
-    /**
-     * returns integer number inside the interval of our model
-     * @param scanner
-     * @return
-     */
-    public int desireInt (Scanner scanner) {
-        while (!isInsideBorders(model.getMinBound(), model.getMaxBound(), inputInt(scanner))) {
-            scanner.next();
-            view.printMessage(view.OUT_OF_RANGE);
 
-        }return scanner.nextInt();
-    }
-
-
-
-
-
-
-
-
-
-
-    //return false;
 
 
 
@@ -178,10 +191,10 @@ public class Controller {
         System.out.println("Hidden Number = " + model.getHiddenNumber());
 
         System.out.println(model.getHiddenNumber());
-        //view.printMessage(view.INPUT_INT_DATA);
+
         Scanner scanner = new Scanner(System.in);
 
-        while (!(model.guessNumber(desireInt(scanner)))){
+        while (!(model.guessNumber(desireInt(inputInt(scanner))))){
             System.out.println("minBound = " + model.getMinBound());
             System.out.println("maxBound = " + model.getMaxBound());
 
@@ -196,12 +209,5 @@ public class Controller {
 }
 
 
-
-
-/**
- *
- * @param sc
- * @return
- */
 
 

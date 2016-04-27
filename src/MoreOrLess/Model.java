@@ -18,7 +18,7 @@ public class Model {
 
 
     }
-//int i, int i1, int rand
+
     public Model(int minBound, int maxBound) {
         this.minBound = minBound;
         this.maxBound = maxBound;
@@ -27,7 +27,7 @@ public class Model {
 
     /**
      *
-     * @return a randomize integer number between that is more than RAND_MIN and less than RAND_MAX
+     * @return a randomize integer number that is more than RAND_MIN and less than RAND_MAX
      */
 
     public int rand () {
@@ -37,13 +37,22 @@ public class Model {
 
     }
 
+    /**
+     *
+     * @return a randomize integer number that is more than minBound and less than maxBound
+     */
 
     public static int rand (int minBound, int maxBound) {
         return (minBound+1) + (int) (Math.random() * (maxBound - minBound - 1));
     }
 
 
-
+    /**
+     * the main logic of the game
+     * @param tryingNumber is the number which User inputs, the guessNumber copmares it with the randomize secret number
+     *                     which is created with an object of Model class
+     * @return
+     */
 
     public boolean guessNumber (int tryingNumber) {
 
@@ -70,19 +79,11 @@ public class Model {
 
 
 
-    public int getHiddenNumber(int minBound, int maxBound) {
+   public int getHiddenNumber(int minBound, int maxBound) {
         return hiddenNumber;
     }
 
-    public void setHiddenNumber() {
 
-        hiddenNumber = rand();
-    }
-
-    public void setHiddenNumber(int minBound, int maxBound) {
-
-        hiddenNumber = rand(minBound, maxBound);
-    }
     public int getHiddenNumber() {
         return hiddenNumber;
     }

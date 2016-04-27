@@ -1,5 +1,5 @@
 package MoreOrLess;
-
+import java.util.Scanner;
 
 
 /**
@@ -8,6 +8,9 @@ package MoreOrLess;
 public class Main {
     public static void main (String[] args) {
 
+       //Scanner scanner = new Scanner(System.in);
+        //Controller.isNewInterval();
+       // Controller.setIntervals();
         Model model = new Model();
         View view = new View();
         Controller controller = new Controller(model, view);
