@@ -109,11 +109,7 @@ public class Controller {
      * @param myNumber
      * @return
      */
-    public boolean isInsideBorders2(int min, int max, int myNumber) {
-        if ((min < myNumber) && (myNumber < max)) return true;
-        else return false;
 
-    }
 
 
     public boolean isInsideBorders(int min, int max, int myNumber) {
