@@ -1,6 +1,6 @@
 package MoreOrLess;
 
-import processing.core.*;
+
 
 /**
  * Created by MashaJM on 08.04.2016.
@@ -30,7 +30,7 @@ public class View {
     public static final String WE_FOUND = "We are happy! You guessed it ";
 
 
-    public void printMessage(String message){
+    public static void printMessage(String message){
         System.out.println(message);
 
     }

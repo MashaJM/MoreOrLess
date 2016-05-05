@@ -22,14 +22,14 @@ public class Controller {
 
     /**
      * check, if the User wants to solve the problem on default interval (0..100) or wants the new one
+     * it is static because we need it for our model defining
      * @param
      * @return
      */
 
     public static Boolean isNewInterval() {
-        System.out.println("Hello dear User. Let's try to guess one integer we will hide from you. " +
-                "\n Do you want to choose the interval?\n " +
-                "Or we can just play to default game on interval (0..100). \n Press Y for choose interval, Press N for having default game");
+        View.printMessage(View.GREETINGS);
+
         Scanner scanner = new Scanner(System.in);
         while (true) {
 
@@ -44,21 +44,20 @@ public class Controller {
             } else if ((yesOrNo.equals("N")) || (yesOrNo.equals("n")))
 
 
-
             {
 
                 System.out.println(yesOrNo);
                 return false;
+            } else {
+                {
+                    System.out.println("Wrong input! Repeat please!");
+                    View.printMessage(View.WRONG_INPUT_INT_DATA);
+
+
+
+                }
+
             }
-            {
-
-
-                System.out.println("Wrong input! Repeat please!");
-                System.out.println(yesOrNo);
-
-
-            }
-
         }
     }
 
@@ -71,32 +70,34 @@ public class Controller {
         int array[] = new int[2];
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("Set the minimal border");
         while (!sc.hasNextInt()) {
-            System.out.println("Set the minimal border");
-            sc.nextInt();
+
+
             System.out.println("wrong input data, try again");
+            sc.next();
 
         }
         array[0] = sc.nextInt();
+        System.out.println(array[0]);
 
 
+        System.out.println("Set the maximal border");
         while (!sc.hasNextInt()) {
-            System.out.println("Set the maximal border");
-            sc.nextInt();
             System.out.println("wrong input data, try again");
+            sc.next();
         }
         array[1] = sc.nextInt();
-
+        System.out.println(array[1]);
 
         if (array[0] > array[1]) {
             int a = array[0];
-            array[1] = array[0];
-            array[0] = a;
+            array[0] = array[1];
+            array[1] = a;
 
 
         }
-       // model.setMinBound(array[0]);
-       // model.setMaxBound(array[1]);
+
 
 
         return array;
@@ -159,21 +160,6 @@ public class Controller {
 
 
 
-
-
-
- /*   public Model chooseModel()
-    {
-        Scanner sc = new Scanner(System.in);
-        if (isNewInterval(sc)) {
-            this.setIntervals();
-            model = new Model(setIntervals()[0], setIntervals()[1]);
-            System.out.println("my intervals are: [" + setIntervals()[0] + ".." + setIntervals()[1] + "]");
-            return model;
-        } else model = new Model();
-        return model;
-    }
-    */
 
     /**
      * the main game
